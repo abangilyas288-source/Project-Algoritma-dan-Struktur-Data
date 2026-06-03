@@ -1,12 +1,16 @@
 {
     "playlist": [
-        "aku maunya samna kamu"
-    ],
-    "favorit": [],
-    "riwayat": [
-        "aku maunya samna kamu"
+        "aku maunya sama kamu",
+        "tergila gila denganmu",
+        "that shoul be me"
     ],
     "play_count": {
-        "aku maunya samna kamu": 1
-    }
+        "aku maunya samna kamu": 1,
+        "gula dan madu": 1,
+        "that shoul be me": 4,
+        "aku maunya sama kamu": 3,
+        "only one": 3,
+        "tergila gila denganmu": 4
+    },
+    "mode_looping": true
 }
