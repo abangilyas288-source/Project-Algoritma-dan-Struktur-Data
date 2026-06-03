@@ -179,7 +179,6 @@ class DoubleLinkedList:
 # ============================================================
 
 dll_playlist = DoubleLinkedList()  # Double Linked List utama
-play_count = {}
 mode_looping = False  # Status looping
 
 
@@ -193,14 +192,12 @@ def load_data():
         with open(DATABASE, "r", encoding="utf-8") as f:
             data = json.load(f)
             dll_playlist.dari_list(data.get("playlist", []))
-            play_count = data.get("play_count", {})
             mode_looping = data.get("mode_looping", False)
 
 def save_data():
     with open(DATABASE, "w", encoding="utf-8") as f:
         json.dump({
             "playlist": dll_playlist.ke_list(),
-            "play_count": play_count,
             "mode_looping": mode_looping
         }, f, indent=4, ensure_ascii=False)
 
@@ -242,9 +239,6 @@ def ubah_lagu():
             judul_baru = input("Judul baru: ").strip()
             if judul_baru:
                 dll_playlist.ubah(judul_lama, judul_baru)
-                # Update juga di favorit, riwayat, play_count
-                if judul_lama in play_count:
-                    play_count[judul_baru] = play_count.pop(judul_lama)
                 save_data()
                 print(f"✓ Berhasil diubah menjadi '{judul_baru}'.")
         else:
@@ -294,7 +288,6 @@ def sort_za():
 
 
 def _putar(lagu):
-    play_count[lagu] = play_count.get(lagu, 0) + 1
     save_data()
     print(f"\n♪ Sedang memutar: {lagu}")
     if mode_looping:
